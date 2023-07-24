@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cs Vault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+ 
+    <main>
+        <input type="text" id="inputBuscar" value="" placeholder="Buscar producto..." />
+        <ul id="categorias">
+          <li><a href="#" class="btnseleccionado" id="btnTodos">Todos</a></li>
+          <li><a href="#" class="btnCategoria">Pistolas</a></li>
+          <li><a href="#" class="btnCategoria">Rifles</a></li>
+          <li><a href="#" class="btnCategoria">Subfusiles</a></li>
+        </ul>
+      <div id="Skins">
+
+      </div>
+    </main>
+
+    <!--Carrito-->
+    <section class="ocultar">
+      <h1>
+        <span id="cantidadSkins">0</span>
+      </h1>
+      <div id="carrito">
+        <!-- Productos al carrito -->
+      </div>
+      <h3>Total: $<span id="totalCarrito">0</span></h3>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
