@@ -1,26 +1,21 @@
+class Skin {
+    constructor(id, nombre, precio, categoria, imagen = false) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.categoria = categoria;
+        this.imagen = imagen;
+    }
+}
+
 class BaseDeDatos {
     constructor() {
         this.Skins = [];
-        this.agregarSkin(1, "AK47 Headshot", 242, "Rifles", "ak 1.png");
-        this.agregarSkin(2, "AK47 NightWish", 186, "Rifles", "ak 2.png");
-        this.agregarSkin(3, "PP BIZON High Roller", 84, "Subfusiles", "biz 1.png");
-        this.agregarSkin(4, "Desert Eagle Blaze", 504, "Pistolas", "dg 1.png");
-        this.agregarSkin(5, "Desert Eagle Fennec Fox", 676, "Pistolas", "dg 2.png");
-        this.agregarSkin(6, "Glock 18 Fade", 1600, "Pistolas", "glock 1.png");
-        this.agregarSkin(7, "M4A1S HyperBeast", 192, "Rifles", "m4a1 1.png");
-        this.agregarSkin(8, "M4A1S Knight", 1950, "Rifles", "m4a1 2.png");
-        this.agregarSkin(9, "MAC 10 Stalker", 75, "Subfusiles", "mac 1.png");
-        this.agregarSkin(10, "MP9 Wild Lily", 1700, "Subfusiles", "mp9 1.png");
-        this.agregarSkin(11, "P90 Death by Kitty", 210, "Subfusiles", "p90 1.png");
-        this.agregarSkin(12, "USP Kill Confirmed", 275, "Pistolas", "usp 1.png");
     }
 
-    agregarSkin(id, nombre, precio, categoria, imagen) {
-        const SkinItem = new Skin(id, nombre, precio, categoria, imagen);
-        this.Skins.push(SkinItem);
-    }
-
-    traerRegistros() {
+    async traerRegistros() {
+        const response = await fetch("productos.json");
+        this.Skins = await response.json();
         return this.Skins;
     }
 
@@ -30,6 +25,10 @@ class BaseDeDatos {
 
     registrosPorNombre(palabra) {
         return this.Skins.filter((Skin) => Skin.nombre.toLowerCase().includes(palabra));
+    }
+    
+    SkinsPorCategoria(categoria) {
+        return this.Skins.filter((Skin) => Skin.categoria == categoria);
     }
 }
 
@@ -68,7 +67,7 @@ class Carrito {
         this.listar();
         localStorage.setItem("carrito", JSON.stringify(this.carrito));
     }
-
+    
     listar() {
         this.total = 0;
         this.totalSkins = 0;
@@ -100,16 +99,6 @@ class Carrito {
     }
 }
 
-class Skin {
-    constructor(id, nombre, precio, categoria, imagen = false) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
-        this.imagen = imagen;
-    }
-}
-
 const bd = new BaseDeDatos();
 
 
@@ -117,10 +106,31 @@ const divSkins = document.querySelector("#Skins");
 const divCarrito = document.querySelector("#carrito");
 const spanCantidadSkins = document.querySelector("#cantidadSkins");
 const spanTotalCarrito = document.querySelector("#totalCarrito");
+const inputBuscar = document.querySelector("#inputBuscar")
 const botonCarrito = document.querySelector("section h1");
 const botonesCategorias = document.querySelectorAll(".btnCategoria");
 
-cargarSkins(bd.traerRegistros());
+
+inputBuscar.addEventListener("keyup", () => {
+    const palabra = inputBuscar.value;
+    const SkinsEncontrados = bd.registrosPorNombre(palabra.toLowerCase());
+    cargarSkins(SkinsEncontrados);
+  });
+
+botonesCategorias.forEach((boton) => {
+    boton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const SkinsPorCategoria = bd.SkinsPorCategoria(boton.innerText);
+        cargarSkins(SkinsPorCategoria)
+    });
+});
+
+document.querySelector("#btnTodos").addEventListener("click", (event) => {
+    event.preventDefault();
+        cargarSkins(bd.Skins)
+});
+bd.traerRegistros().then(
+    (Skins) => cargarSkins(Skins));
 
 function cargarSkins(Skins) {
     divSkins.innerHTML = "";
@@ -148,6 +158,15 @@ function cargarSkins(Skins) {
         });
     }
 }
+
+botonComprar.addEventListener("click", () => {
+    Swal.fire({
+        title: 'Compra Completada',
+        text: 'Gracias por comprar en Cs Vault!',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      })
+})
 
 //ocultar/mostrar el carrito
 botonCarrito.addEventListener("click", (event) => {

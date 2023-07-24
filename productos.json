@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "nombre": "AK47 Headshot",
+        "precio": 242,
+        "categoria": "Rifles",
+        "imagen": "ak 1.png"
+    },
+    {
+        "id": 2,
+        "nombre": "AK47 NightWish",
+        "precio": 186,
+        "categoria": "Rifles",
+        "imagen": "ak 2.png"
+    },
+    {
+        "id": 3,
+        "nombre": "PP BIZON High Roller",
+        "precio": 84,
+        "categoria": "Subfusiles",
+        "imagen": "biz 1.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Desert Eagle Blaze",
+        "precio": 504,
+        "categoria": "Pistolas",
+        "imagen": "dg 1.png"
+    },
+    {
+        "id": 5,
+        "nombre": "Desert Eagle Fennec Fox",
+        "precio": 676,
+        "categoria": "Pistolas",
+        "imagen": "dg 2.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Glock 18 Fade",
+        "precio": 1600,
+        "categoria": "Pistolas",
+        "imagen": "glock 1.png"
+    },
+    {
+        "id": 7,
+        "nombre": "M4A1S HyperBeast",
+        "precio": 192,
+        "categoria": "Rifles",
+        "imagen": "m4a1 1.png"
+    },
+    {
+        "id": 8,
+        "nombre": "M4A1S Knight",
+        "precio": 1950,
+        "categoria": "Rifles",
+        "imagen": "m4a1 2.png"
+    },
+    {
+        "id": 9,
+        "nombre": "MAC 10 Stalker",
+        "precio": 75,
+        "categoria": "Subfusiles",
+        "imagen": "mac 1.png"
+    },
+    {
+        "id": 10,
+        "nombre": "MP9 Wild Lily",
+        "precio": 1700,
+        "categoria": "Subfusiles",
+        "imagen": "mp9 1.png"
+    },
+    {
+        "id": 11,
+        "nombre": "P90 Death by Kitty",
+        "precio": 210,
+        "categoria": "Subfusiles",
+        "imagen": "p90 1.png"
+    },
+    {
+        "id": 12,
+        "nombre": "USP Kill Confirmed",
+        "precio": 275,
+        "categoria": "Pistolas",
+        "imagen": "usp 1.png"
+    }
+]
